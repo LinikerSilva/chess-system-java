@@ -1,17 +1,10 @@
 package boardgame;
 
 public class Board {
+
     private int rows;
     private int columns;
     private Piece[][] pieces;
-
-    public int getRows() {
-        return rows;
-    }
-
-    public int getColumns() {
-        return columns;
-    }
 
     public Board(int rows, int columns) {
         if (rows < 1 || columns < 1) {
@@ -20,6 +13,14 @@ public class Board {
         this.rows = rows;
         this.columns = columns;
         pieces = new Piece[rows][columns];
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
     }
 
     public Piece piece(int row, int column) {
@@ -57,15 +58,15 @@ public class Board {
         return aux;
     }
 
-    private Boolean positionExists(int row, int column) {
-        return row >= 0 && row < rows && column < columns;
+    private boolean positionExists(int row, int column) {
+        return row >= 0 && row < rows && column >= 0 && column < columns;
     }
 
-    public Boolean positionExists(Position position) {
+    public boolean positionExists(Position position) {
         return positionExists(position.getRow(), position.getColumn());
     }
 
-    public Boolean thereIsAPiece(Position position) {
+    public boolean thereIsAPiece(Position position) {
         if (!positionExists(position)) {
             throw new BoardException("Position not on the board");
         }
